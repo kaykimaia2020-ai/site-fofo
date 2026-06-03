@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Uma Amiga Especial 🐻✨</title>
+    <style>
+        body {
+            background-color: #ffeef2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #d14969;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgba(209, 73, 105, 0.15);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #ff476f;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .poesia {
+            font-style: italic;
+            background-color: #fff5f7;
+            padding: 15px;
+            border-left: 4px solid #ff6b8b;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #b53853;
+        }
+
+        .botao {
+            background-color: #ff6b8b;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+        }
+
+        .botao:hover {
+            background-color: #ff476f;
+            transform: scale(1.05);
+        }
+
+        /* Esconder a tela 2 no início */
+        .escondido {
+            display: none;
+        }
+
+        /* Estilo das flores que brotam na tela */
+        .flor-efeito {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: sumirFlor 1s ease-out forwards;
+            z-index: 9999;
+            user-select: none;
+        }
+
+        @keyframes sumirFlor {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -100%) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TELA 1 -->
+    <div id="tela1" class="container">
+        <h1>Para Uma Amiga Especial 🐻</h1>
+        <p>Você é uma pessoa incrivelmente iluminada, que torna os dias de todo mundo muito mais felizes com a sua presença!</p>
+        
+        <div class="poesia">
+            "Ter um amigo é ter abrigo,<br>
+            É ter com quem partilhar o caminho.<br>
+            Na tempestade ou no abrigo,<br>
+            A verdadeira amizade traz carinho."
+        </div>
+        
+        <button class="botao" onclick="irParaTela2()">Clique para mais! ✨</button>
+    </div>
+
+    <!-- TELA 2 -->
+    <div id="tela2" class="container escondido">
+        <h1>Olha só... 🥰</h1>
+        <p style="font-size: 18px; font-weight: bold; color: #ff476f;">❤️ Você é linda por dentro e por fora! ❤️</p>
+        <p>A sua amizade é super importante para mim e alegra a minha vida todos os dias. Obrigado por ser essa pessoa tão perfeita e insubstituível! 🧸💖</p>
+        
+        <button class="botao" style="background-color: #bbb; box-shadow: none;" onclick="irParaTela1()">Voltar 🔄</button>
+    </div>
+
+    <script>
+        // Funções para trocar de tela
+        function irParaTela2() {
+            document.getElementById('tela1').classList.add('escondido');
+            document.getElementById('tela2').classList.remove('escondido');
+        }
+
+        function irParaTela1() {
+            document.getElementById('tela2').classList.add('escondido');
+            document.getElementById('tela1').classList.remove('escondido');
+        }
+
+        // Efeito das flores brotando ao clicar em qualquer lugar da tela
+        const flores = ['🌸', '🌹', '🌺'];
+
+        document.addEventListener('click', function(evento) {
+            // Cria o elemento da flor
+            const florElemento = document.createElement('span');
+            florElemento.classList.add('flor-efeito');
+            
+            // Escolhe uma flor aleatória da lista
+            const florAleatoria = flores[Math.floor(Math.random() * flores.length)];
+            florElemento.innerText = florAleatoria;
+            
+            // Define a posição exata onde o mouse clicou
+            florElemento.style.left = evento.pageX + 'px';
+            florElemento.style.top = evento.pageY + 'px';
+            
+            // Coloca a flor na tela
+            document.body.appendChild(florElemento);
+            
+            // Remove a flor após 1 segundo para não travar o navegador
+            setTimeout(function() {
+                florElemento.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
